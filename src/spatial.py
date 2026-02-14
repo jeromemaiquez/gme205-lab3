@@ -52,3 +52,13 @@ class Point(SpatialObject):
     
     def distance_to(self, other):
         return self.geometry.distance(other.geometry)
+
+class Parcel(SpatialObject):
+    """
+    Parcel = spatial object + structured attributes.
+    """
+
+    def __init__(self, parcel_id, geometry, attributes: dict):
+        super().__init__(geometry)
+        self.parcel_id = parcel_id
+        self.attributes = attributes
