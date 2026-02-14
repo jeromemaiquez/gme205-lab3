@@ -11,3 +11,9 @@ class Point:
         self.geometry = ShapelyPoint(lon, lat)
         self.name = name
         self.tag = tag
+
+    def to_tuple(self):
+        return (self.geometry.x, self.geometry.y)
+    
+    def distance_to(self, other):
+        return self.geometry.distance(other.geometry)
