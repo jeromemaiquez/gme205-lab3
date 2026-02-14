@@ -25,3 +25,7 @@ In the terminal, ensuring that ```(.venv)``` is present in the prompt, run the f
     ```
     python <folder/script_name.py>
     ```
+
+# Reflection - Part B.5
+
+Internally, the Point `lat` and `lon` attributes were now represented as the `y` and `x` attributes of the `shapely.Point` class. However, externally, these coordinates are still easily accessible, albeit with slightly different syntax: `Point.geometry.x` instead of `Point.lat`. Since the representation of the geometry is now delegated to Shapely, this library can now handle most spatial computation applicable to point objects.
