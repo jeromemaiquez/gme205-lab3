@@ -42,7 +42,8 @@ row = {
 }
 
 p = Point.from_dict(row)
-print(p.id, p.to_tuple(), p.name, p.tag)
+# print(p.id, p.to_tuple(), p.name, p.tag)
+print(p.as_dict())
 
 invalid_row = {
     "id": "B",
@@ -52,4 +53,4 @@ invalid_row = {
     "tag": "POI"
 }
 
-q = Point.from_dict(invalid_row)
+# q = Point.from_dict(invalid_row)

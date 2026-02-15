@@ -47,16 +47,24 @@ class Point(SpatialObject):
         self.name = name
         self.tag = tag
 
+    @classmethod
+    def from_dict(cls, d: dict):
+        return cls(**d)
+
     def to_tuple(self):
         return (self.geometry.x, self.geometry.y)
     
     def distance_to(self, other):
         return self.geometry.distance(other.geometry)
-    
-    @classmethod
-    def from_dict(cls, d: dict):
-        return cls(**d)
 
+    def as_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "tag": self.tag,
+            "geometry": self.to_tuple(),
+            "bbox": self.bbox()
+        }
 
 class Parcel(SpatialObject):
     """
