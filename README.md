@@ -41,3 +41,15 @@ Internally, the Point `lat` and `lon` attributes were now represented as the `y`
 - If a new method is added in SpatialObject, this method will then be made available to all subclasses as well. This is the effect of inheritance: child classes effectively "inherit" the traits (i.e., attributes and behavior) of its parent class, without having to duplicate code.
 
 - The hierarchical design of harnessing inheritance allows the programmer to add more and more subclass in the future, without having to duplicate much of the basic geometric logic (i.e., the logic we wish to assign to SpatialObject). This allows the code to scale better: the logic still flows clearly even with many more classes added. Without this, the programmer would have to repeat dozens to hundreds of code lines just for the same exact attribute/behavior to be added to each new class created in the code. 
+
+# Reflection - Challenge Exercises
+
+1. This shows the principle of _responsibility_: `from_dict()`'s responsibility is simply to parse an input dictionary for use in constructing a Point object. The responsibility to validate the `lon` and `lat` values remains with the Point `__init__()` method.
+
+2. Because `as_dict()` is being modeled as a behavior of the object (`Point` or `Parcel`). This allows clearer logic and cleaner code. Instead of implementing this logic on its own in `demo.py` or `run_lab3.py`, we can instead bundle it inside the spatial classes we created.
+
+3. It is better for `as_dict()` to return primitive data types, particulary for its `lon` and `lat` attributes (with the `float` data type). If a Shapely geometry object was returned instead, the terminal would simply display `<shapely.geometry ...>`, which only indicates the _existence_ of an object and is thus not legible for a human user.
+
+4. This is because we have chosen to model `intersects()` as a behavior of spatial objects in general, and not specific to any particular class of spatial objects. In GIS, any sort of geometry can have an intersecting spatial relationship, whether it be points, lines, or polygons. Thus, it follows that any spatial entity modeled to have any of these geometry types must also have the ability to have this spatial relationship.
+
+5. A new subclass (i.e. `Building`) would only have to be constructed to be a child class of `SpatiaObject` (i.e., `class Building(SpatialObject):`) for it to support the `intersects()` method. No changes (for now) are required to the method itself, because this is exactly the power of inheritance: as a method of the base class `SpatialObject`, `intersects()` is automatically inherited by any future subclass.
