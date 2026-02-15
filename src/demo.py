@@ -34,24 +34,47 @@ print(parcel.as_dict())
 # print("Parcel BBox: ", parcel.bbox())
 # print("Parcel Zone: ", parcel.attributes["zone"])
 
-row = {
+row_inside = {
     "id": "A",
+    "lon": 1.0,
+    "lat": 1.6,
+    "name": "Inside",
+    "tag": "POI"
+}
+
+inside = Point.from_dict(row_inside)
+
+row_outside = {
+    "id": "B",
     "lon": 121.0,
     "lat": 14.6,
-    "name": "Gate",
+    "name": "Outside",
     "tag": "POI"
 }
 
-p = Point.from_dict(row)
+outside = Point.from_dict(row_outside)
+
+print("Point inside Parcel: ", inside.intersects(parcel))
+print("Point outside Parcel: ", outside.intersects(parcel))
+
+# row = {
+#     "id": "A",
+#     "lon": 121.0,
+#     "lat": 14.6,
+#     "name": "Gate",
+#     "tag": "POI"
+# }
+
+# p = Point.from_dict(row)
 # print(p.id, p.to_tuple(), p.name, p.tag)
-print(p.as_dict())
+# print(p.as_dict())
 
-invalid_row = {
-    "id": "B",
-    "lon": 999.0,
-    "lat": 14.6,
-    "name": "Invalid",
-    "tag": "POI"
-}
+# invalid_row = {
+#     "id": "B",
+#     "lon": 999.0,
+#     "lat": 14.6,
+#     "name": "Invalid",
+#     "tag": "POI"
+# }
 
 # q = Point.from_dict(invalid_row)

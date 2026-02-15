@@ -15,6 +15,9 @@ class SpatialObject:
         """
         return self.geometry.bounds
 
+    def intersects(self, other) -> bool:
+        return self.geometry.intersects(other.geometry)
+
 # class Point:
 #     def __init__(self, id, lon, lat, name=None, tag=None):
 #         if not (-180 <= lon <= 180):
