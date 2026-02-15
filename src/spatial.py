@@ -52,6 +52,11 @@ class Point(SpatialObject):
     
     def distance_to(self, other):
         return self.geometry.distance(other.geometry)
+    
+    @classmethod
+    def from_dict(cls, d: dict):
+        return cls(**d)
+
 
 class Parcel(SpatialObject):
     """
